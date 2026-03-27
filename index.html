@@ -5,60 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eStudent - Sofija Brajović</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f4f4f4; color: #333; }
-        header { background: linear-gradient(to bottom, #a30000, #800000); color: white; padding: 8px 15px; border-bottom: 3px solid #600000; position: sticky; top: 0; z-index: 100; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.2em; } .logo b { font-size: 1.4em; }
-        .user-info { font-size: 0.8em; text-align: right; }
-        .main-container { display: flex; }
-        .sidebar { width: 145px; background: #e8e8e8; border-right: 1px solid #ccc; min-height: 100vh; font-size: 0.72em; flex-shrink: 0; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li { padding: 10px 8px; border-bottom: 1px solid #ccc; color: #444; cursor: pointer; }
-        .sidebar li.active { background: #fff; font-weight: bold; border-left: 4px solid #a30000; }
-        .content { flex-grow: 1; padding: 15px; background: white; overflow-x: auto; }
-        h2 { font-size: 1.1em; margin-top: 0; color: #444; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #fff; color: #333; }
         
-        /* Tabovi i info */
-        .tabs-row { display: flex; gap: 2px; margin-bottom: 10px; }
-        .tab-btn { background: #ccc; border: 1px solid #999; padding: 4px 10px; font-size: 0.7em; }
-        .tab-btn.active { background: white; border-bottom: none; font-weight: bold; }
-        .summary-info { background: #fff; border: 1px solid #ccc; padding: 8px; font-size: 0.7em; margin-bottom: 10px; display: flex; gap: 20px; }
+        /* Gornja crvena traka */
+        header { background: #a30000; color: white; padding: 5px 15px; border-bottom: 3px solid #800000; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; height: 50px; }
+        .logo-text { font-size: 1.4em; font-weight: bold; }
+        .logo-text span { font-weight: normal; }
+        .user-pill { background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 15px; font-size: 0.75em; border: 1px solid #ff9900; }
 
-        /* Tabele */
-        table { width: 100%; border-collapse: collapse; font-size: 0.65em; white-space: nowrap; margin-bottom: 20px; }
-        th { background: #444; color: white; padding: 6px; text-align: left; border: 1px solid #333; }
-        td { border: 1px solid #ccc; padding: 5px; }
+        .main-container { display: flex; }
+
+        /* Bočni sivi meni - identičan kao na slici */
+        .sidebar { width: 180px; background: #f0f0f0; border-right: 1px solid #ccc; min-height: 100vh; flex-shrink: 0; box-shadow: inset -2px 0 5px rgba(0,0,0,0.05); }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar li { padding: 6px 12px; border-bottom: 1px solid #ddd; color: #444; cursor: pointer; font-size: 0.68em; text-align: right; }
+        .sidebar li:hover { background: #e0e0e0; }
+        .sidebar li.active { background: #a8b8c8; color: white; font-weight: bold; }
+
+        .content { flex-grow: 1; padding: 15px; overflow-x: auto; }
+        h2 { font-size: 1.1em; color: #444; border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 5px; }
+
+        /* Tabovi unutar stranice */
+        .sub-tabs { display: flex; gap: 2px; margin-bottom: 10px; }
+        .sub-tab { background: #e0e0e0; border: 1px solid #999; padding: 3px 10px; font-size: 0.65em; cursor: pointer; }
+        .sub-tab.active { background: #fff; border-bottom: none; font-weight: bold; }
+
+        .info-bar { background: #fff; border: 1px solid #ccc; padding: 8px; font-size: 0.65em; margin-bottom: 10px; display: flex; gap: 30px; }
+
+        /* Tabele sa podacima */
+        table { width: 100%; border-collapse: collapse; font-size: 0.62em; margin-bottom: 20px; }
+        th { background: #555; color: white; padding: 5px; border: 1px solid #333; font-weight: normal; }
+        td { border: 1px solid #ccc; padding: 5px; text-align: left; }
         tr:nth-child(even) { background: #f2f2f2; }
 
-        /* UPLATNICA STIL */
-        .uplatnica-container { margin-top: 30px; border-top: 2px dashed #999; padding-top: 20px; max-width: 600px; }
-        .uplatnica-naslov { font-size: 0.9em; font-weight: bold; margin-bottom: 10px; color: #555; }
-        .uplatnica-box { border: 2px solid #000; padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-family: "Courier New", monospace; text-transform: uppercase; background: #fff; position: relative; }
-        .uplatnica-box::after { content: "NALOG ZA UPLATU"; position: absolute; top: 5px; right: 10px; font-size: 0.8em; font-weight: bold; }
-        .field { border-bottom: 1px solid #000; margin-bottom: 10px; font-size: 0.75em; padding-bottom: 2px; }
-        .field label { display: block; font-size: 0.6em; color: #333; margin-bottom: 2px; text-transform: none; }
-        .qr-placeholder { width: 60px; height: 60px; border: 2px solid #000; display: flex; align-items: center; text-align: center; font-size: 0.5em; float: right; }
+        /* UPLATNICA I PRIZNANICA */
+        .uplatnica-section { margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; max-width: 700px; }
+        .uplatnica-box { border: 1px solid #000; padding: 15px; display: flex; background: #fff; position: relative; margin-bottom: 20px; }
+        .uplatnica-box::after { content: "NALOG ZA UPLATU"; position: absolute; right: 10px; top: 5px; font-weight: bold; font-size: 0.9em; font-family: sans-serif; }
+        .upl-left { width: 60%; border-right: 1px solid #000; padding-right: 10px; }
+        .upl-right { width: 40%; padding-left: 10px; }
+        
+        .field-box { border: 1px solid #000; margin-bottom: 10px; min-height: 40px; padding: 2px 5px; position: relative; }
+        .field-box label { font-size: 0.55em; text-transform: lowercase; display: block; margin-bottom: 2px; }
+        .field-val { font-size: 0.8em; font-weight: bold; font-family: monospace; }
+
+        .qr-area { text-align: center; margin-top: 20px; }
+        .qr-image { width: 180px; height: 180px; border: 1px solid #ccc; padding: 5px; }
+        .qr-label { font-size: 0.7em; font-weight: bold; display: block; margin-top: 5px; }
 
         .hidden { display: none; }
-        .footer-stats { margin-top: 15px; padding: 8px; background: #eee; font-weight: bold; font-size: 0.8em; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="header-content">
-        <div class="logo"><b>e</b>Student</div>
-        <div class="user-info">Sofija Brajović (bs200179)<br><small>Elektrotehnički fakultet</small></div>
-    </div>
+    <div class="logo-text">e<span>Student</span></div>
+    <div class="user-pill">👤 Sofija Brajović (bs200179) ● kraj rada</div>
 </header>
 
 <div class="main-container">
     <nav class="sidebar">
         <ul>
-            <li onclick="location.reload()">Početna</li>
-            <li id="li-ispiti" class="active" onclick="prikazi('ispiti', this)">Položeni ispiti</li>
-            <li id="li-uplate" onclick="prikazi('uplate', this)">Školarine i uplate</li>
+            <li>Početna</li>
             <li>Molba</li>
+            <li>Staro obaveštenje</li>
+            <li>ŠV-20</li>
+            <li>Ispitni rokovi</li>
+            <li>Prijava ispita</li>
+            <li>Ispiti</li>
+            <li id="m-ispiti" class="active" onclick="prikazi('ispiti', this)">Položeni ispiti</li>
+            <li>Sticanje uslova</li>
+            <li>Napuštanje fakulteta</li>
+            <li>Aktivnosti</li>
+            <li>Spiskovi</li>
+            <li id="m-uplate" onclick="prikazi('uplate', this)">Školarine i uplate</li>
+            <li>Završni rad</li>
             <li>Kraj rada</li>
         </ul>
     </nav>
@@ -71,25 +92,23 @@
                     <tr><th>Rbr.</th><th>Akronim</th><th>Naziv</th><th>Ocena</th><th>ESPB</th><th>Rok</th><th>Datum</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture podataka 2</td><td>6</td><td>6</td><td>2025/26 feb</td><td>24.03.2026.</td></tr>
-                    <tr><td>2</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td><td>2025/26 jan</td><td>22.02.2026.</td></tr>
-                    <tr><td>3</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>2025/26 feb</td><td>11.03.2026.</td></tr>
-                    <tr><td>4</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>2025/26 feb</td><td>21.02.2026.</td></tr>
-                    <tr><td colspan="7" style="text-align:center">... učitani svi ispiti ...</td></tr>
+                    <tr><td>1</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>2025/26 feb</td><td>11.03.2026.</td></tr>
+                    <tr><td>2</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>2025/26 jan</td><td>21.02.2026.</td></tr>
+                    <tr><td>3</td><td>13S112AR</td><td>Arhitektura računara</td><td>6</td><td>6</td><td>2024/25 okt 2</td><td>23.10.2025.</td></tr>
+                    <tr><td colspan="7" style="text-align:center; font-style:italic;">... i ostalih 24 ispita ...</td></tr>
                 </tbody>
             </table>
-            <div class="footer-stats">Prosečna ocena: 7,48 | Zbir ESPB: 126</div>
         </div>
 
         <div id="sekcija-uplate" class="hidden">
             <h2>Školarine i Uplate</h2>
-            <div class="tabs-row">
-                <div class="tab-btn active">Školarine</div>
-                <div class="tab-btn">Uplate</div>
-                <div class="tab-btn">Račun studenta</div>
+            <div class="sub-tabs">
+                <div class="sub-tab active">Školarine</div>
+                <div class="sub-tab">Uplate</div>
+                <div class="sub-tab">Račun studenta</div>
             </div>
             
-            <div class="summary-info">
+            <div class="info-bar">
                 <span>Stanje na računu: 3.551,00</span>
                 <span>Ukupno dugovanje: 0,00</span>
             </div>
@@ -103,30 +122,34 @@
                     <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>upis naredne</td><td>školarina</td><td>3</td><td>4</td><td>84.600,00</td><td>15.03.2026.</td></tr>
                     <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>upis naredne</td><td>školarina</td><td>2</td><td>4</td><td>70.500,00</td><td>19.12.2025.</td></tr>
                     <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>upis naredne</td><td>školarina</td><td>1</td><td>4</td><td>70.500,00</td><td>30.11.2025.</td></tr>
+                    <tr><td>2024/25</td><td>druga</td><td>samofin.</td><td>upis naredne</td><td>školarina</td><td>4</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                    <tr><td>2023/24</td><td>druga</td><td>samofin.</td><td>upis naredne</td><td>školarina</td><td>4</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
+                    <tr><td>2020/21</td><td>prva</td><td>samofin.</td><td>sa rang liste</td><td>školarina</td><td>1</td><td>4</td><td>60.875,00</td><td>08.07.2020.</td></tr>
                 </tbody>
             </table>
 
-            <div class="uplatnica-container">
-                <div class="uplatnica-naslov">Primer ispravno popunjene uplatnice</div>
+            <div class="uplatnica-section">
+                <p style="font-size:0.75em; font-weight:bold;">Primer ispravno popunjene uplatnice</p>
                 <div class="uplatnica-box">
-                    <div class="uplatnica-levo">
-                        <div class="field"><label>uplatilac</label>SOFIJA BRAJOVIĆ<br>ADRESA STANOVANJA, MESTO</div>
-                        <div class="field"><label>svrha uplate</label>ŠKOLARINA / PRIJAVA ISPITA</div>
-                        <div class="field"><label>primalac</label>UNIVERZITET U BEOGRADU - ELEKTROTEHNIČKI FAKULTET<br>SOPSTVENI PRIHODI</div>
+                    <div class="upl-left">
+                        <div class="field-box"><label>uplatilac</label><div class="field-val">Sofija Brajović<br>Adresa stanovanja, Mesto</div></div>
+                        <div class="field-box"><label>svrha uplate</label><div class="field-val">Školarina/Prijava ispita</div></div>
+                        <div class="field-box"><label>primalac</label><div class="field-val">UB-Elektrotehnički fakultet<br>Sopstveni prihodi</div></div>
                     </div>
-                    <div class="uplatnica-desno">
-                        <div style="display:flex; gap:10px">
-                            <div class="field" style="width:40px"><label>šifra pl.</label>253</div>
-                            <div class="field" style="width:40px"><label>valuta</label>RSD</div>
-                            <div class="field" style="flex-grow:1"><label>iznos</label></div>
+                    <div class="upl-right">
+                        <div style="display:flex; gap:5px">
+                            <div class="field-box" style="width:40px"><label>šifra</label><div class="field-val">253</div></div>
+                            <div class="field-box" style="width:40px"><label>val.</label><div class="field-val">RSD</div></div>
+                            <div class="field-box" style="flex-grow:1"><label>iznos</label><div class="field-val"></div></div>
                         </div>
-                        <div class="field"><label>račun primaoca</label>840-31210845-68</div>
-                        <div style="display:flex; gap:10px">
-                            <div class="field" style="width:40px"><label>model</label>97</div>
-                            <div class="field" style="flex-grow:1"><label>poziv na broj (odobrenje)</label>14122026bs200179</div>
-                        </div>
-                        <div class="qr-placeholder">QR KOD</div>
+                        <div class="field-box"><label>račun primaoca</label><div class="field-val">840-31210845-68</div></div>
+                        <div class="field-box"><label>poziv na broj</label><div class="field-val">14122026bs200179</div></div>
                     </div>
+                </div>
+
+                <div class="qr-area">
+                    <span class="qr-label">NBS IPS QR kôd</span>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=K:PR|V:01|C:1|R:8403121084568|N:ETF+BEOGRAD|I:RSD|SF:253|RO:14122026bs200179" class="qr-image" alt="QR Kod za uplatu">
                 </div>
             </div>
         </div>
@@ -134,14 +157,12 @@
 </div>
 
 <script>
-    function prikazi(id, element) {
+    function prikazi(id, el) {
         document.getElementById('sekcija-ispiti').classList.add('hidden');
         document.getElementById('sekcija-uplate').classList.add('hidden');
         document.getElementById('sekcija-' + id).classList.remove('hidden');
-        
-        let items = document.querySelectorAll('.sidebar li');
-        items.forEach(item => item.classList.remove('active'));
-        element.classList.add('active');
+        document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
+        el.classList.add('active');
     }
 </script>
 
