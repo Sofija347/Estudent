@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eStudent - Položeni ispiti</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; background-color: #f4f4f4; }
+        header { background: linear-gradient(to bottom, #a30000, #800000); color: white; padding: 10px; border-bottom: 3px solid #600000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; font-size: 0.8em; }
+        .main-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 120px; background: #ddd; border-right: 1px solid #ccc; font-size: 0.7em; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar li { padding: 10px; border-bottom: 1px solid #bbb; }
+        .sidebar li.active { background: #fff; font-weight: bold; }
+        .content { flex-grow: 1; padding: 10px; overflow-x: auto; }
+        h2 { font-size: 1.2em; color: #444; }
+        .exams-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.7em; }
+        .exams-table th { background: #444; color: white; padding: 5px; text-align: left; }
+        .exams-table td { border: 1px solid #ddd; padding: 5px; }
+        .exams-table tr:nth-child(even) { background: #f9f9f9; }
+        .footer-info { margin-top: 10px; font-size: 0.8em; font-weight: bold; background: #eee; padding: 5px; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <div><strong>e</strong>Student <small>ETF BG</small></div>
+        <div>Sofija Erčević (2021/111)</div>
+    </div>
+</header>
+<div class="main-container">
+    <nav class="sidebar">
+        <ul>
+            <li>Početna</li>
+            <li class="active">Položeni ispiti</li>
+            <li>Ispitni rokovi</li>
+            <li>Školarine</li>
+        </ul>
+    </nav>
+    <main class="content">
+        <h2>Položeni ispiti</h2>
+        <table class="exams-table">
+            <thead>
+                <tr><th>Rbr.</th><th>Akronim</th><th>Naziv</th><th>Ocena</th><th>ESPB</th><th>Datum</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>11.03.2026.</td></tr>
+                <tr><td>2</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>21.02.2026.</td></tr>
+                <tr><td>3</td><td>13S112AR</td><td>Arhitektura računara</td><td>6</td><td>6</td><td>23.10.2025.</td></tr>
+                </tbody>
+        </table>
+        <div class="footer-info">Prosečna ocena: 7.52 | Zbir ESPB: 114</div>
+    </main>
+</div>
+</body>
+</html>
