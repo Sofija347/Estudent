@@ -17,7 +17,7 @@
         .content { flex-grow: 1; padding: 15px; overflow-x: auto; }
         h2 { font-size: 1.1em; color: #444; border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 5px; }
         .sub-tabs { display: flex; gap: 2px; margin-bottom: 10px; }
-        .sub-tab { background: #e0e0e0; border: 1px solid #999; padding: 3px 10px; font-size: 0.65em; }
+        .sub-tab { background: #e0e0e0; border: 1px solid #999; padding: 3px 10px; font-size: 0.65em; cursor: pointer; }
         .sub-tab.active { background: #fff; border-bottom: none; font-weight: bold; }
         .info-bar { border: 1px solid #ccc; padding: 8px; font-size: 0.65em; margin-bottom: 10px; display: flex; gap: 30px; }
         table { width: 100%; border-collapse: collapse; font-size: 0.62em; margin-bottom: 20px; }
@@ -60,33 +60,33 @@
             <table>
                 <thead><tr><th>Rbr.</th><th>Akronim</th><th>Naziv</th><th>Ocena</th><th>ESPB</th><th>Rok</th><th>Datum</th></tr></thead>
                 <tbody>
-                    <tr><td>1</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>2025/26 feb</td><td>11.03.2026.</td></tr>
-                    <tr><td>2</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>2025/26 jan</td><td>21.02.2026.</td></tr>
-                    <tr><td>3</td><td>13S112AR</td><td>Arhitektura računara</td><td>6</td><td>6</td><td>2024/25 okt 2</td><td>23.10.2025.</td></tr>
-                    <tr><td>4</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>8</td><td>6</td><td>2024/25 okt 2</td><td>12.10.2025.</td></tr>
-                    <tr><td>5</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>7</td><td>6</td><td>2024/25 okt 1</td><td>15.10.2025.</td></tr>
-                    <tr><td>6</td><td>13S082PMT</td><td>Principi modernih telekom.</td><td>7</td><td>6</td><td>2024/25 sep 2</td><td>30.09.2025.</td></tr>
-                    <tr><td>7</td><td>13S111OPRT</td><td>Praktikum iz osnova prog.</td><td>6</td><td>3</td><td>2024/25 sep 2</td><td>09.10.2025.</td></tr>
-                    <tr><td>8</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>8</td><td>6</td><td>2024/25 sep 1</td><td>13.09.2025.</td></tr>
-                    <tr><td>9</td><td>13S111OPT2</td><td>Osnovi računarske tehnike 2</td><td>6</td><td>6</td><td>2024/25 sep 1</td><td>15.09.2025.</td></tr>
-                    <tr><td>10</td><td>13S111ASP1</td><td>Algoritmi i strukture pod. 1</td><td>6</td><td>6</td><td>2024/25 jul 1</td><td>18.06.2025.</td></tr>
-                    <tr><td>11</td><td>13S112BP1</td><td>Baze podataka 1</td><td>6</td><td>6</td><td>2023/24 avgust</td><td>31.08.2024.</td></tr>
-                    <tr><td>12</td><td>13S081M2</td><td>Matematika 2</td><td>8</td><td>5</td><td>2020/21 jul</td><td>04.07.2021.</td></tr>
-                    <tr><td>13</td><td>13S111ORT1</td><td>Osnovi računarske tehnike 1</td><td>7</td><td>5</td><td>2020/21 jun</td><td>30.06.2021.</td></tr>
-                    <tr><td>14</td><td>13S111P2</td><td>Praktikum iz programiranja 2</td><td>7</td><td>3</td><td>2020/21 jul</td><td>05.07.2021.</td></tr>
-                    <tr><td>15</td><td>13S081M2</td><td>Praktikum iz matematike 2</td><td>9</td><td>2</td><td>2020/21 jun</td><td>10.06.2021.</td></tr>
-                    <tr><td>16</td><td>13S081EJB</td><td>Engleski jezik - bazični</td><td>9</td><td>2</td><td>2020/21 jun</td><td>12.06.2021.</td></tr>
-                    <tr><td>17</td><td>13S111P2</td><td>Programiranje 2</td><td>7</td><td>5</td><td>2020/21 jun</td><td>14.06.2021.</td></tr>
-                    <tr><td>18</td><td>13S041OE</td><td>Osnovi elektronike</td><td>7</td><td>5</td><td>2020/21 feb</td><td>12.02.2021.</td></tr>
-                    <tr><td>19</td><td>13S111P1</td><td>Programiranje 1</td><td>8</td><td>5</td><td>2020/21 feb</td><td>11.02.2021.</td></tr>
-                    <tr><td>20</td><td>13S111PP1</td><td>Praktikum iz programiranja 1</td><td>9</td><td>3</td><td>2020/21 feb</td><td>09.02.2021.</td></tr>
-                    <tr><td>21</td><td>13S081M1</td><td>Matematika 1</td><td>9</td><td>5</td><td>2020/21 feb</td><td>14.02.2021.</td></tr>
-                    <tr><td>22</td><td>13S081EJN</td><td>Engleski jezik - niži</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
-                    <tr><td>23</td><td>13S081PM1</td><td>Praktikum iz matematike 1</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
-                    <tr><td>24</td><td>13S061F</td><td>Fizika</td><td>9</td><td>5</td><td>2020/21 jan</td><td>26.01.2021.</td></tr>
-                    <tr><td>25</td><td>24S111UVR</td><td>Uvod u računarstvo</td><td>10</td><td>2</td><td>2020/21 jan</td><td>30.01.2021.</td></tr>
-                    <tr><td>26</td><td>13S111ASP2</td><td>Algoritmi i strukture pod. 2</td><td>6</td><td>6</td><td>2025/26 feb</td><td>24.03.2026.</td></tr>
-                    <tr><td>27</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td><td>2025/26 jan</td><td>22.02.2026.</td></tr>
+                    <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture podataka 2</td><td>6</td><td>6</td><td>2025/26 feb</td><td>24.03.2026.</td></tr>
+                    <tr><td>2</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>2025/26 feb</td><td>11.03.2026.</td></tr>
+                    <tr><td>3</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td><td>2025/26 jan</td><td>22.02.2026.</td></tr>
+                    <tr><td>4</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>2025/26 jan</td><td>21.02.2026.</td></tr>
+                    <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>6</td><td>6</td><td>2024/25 okt 2</td><td>23.10.2025.</td></tr>
+                    <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>8</td><td>6</td><td>2024/25 okt 2</td><td>12.10.2025.</td></tr>
+                    <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>7</td><td>6</td><td>2024/25 okt 1</td><td>15.10.2025.</td></tr>
+                    <tr><td>8</td><td>13S082PMT</td><td>Principi modernih telekom.</td><td>7</td><td>6</td><td>2024/25 sep 2</td><td>30.09.2025.</td></tr>
+                    <tr><td>9</td><td>13S111OPRT</td><td>Praktikum iz osnova prog.</td><td>6</td><td>3</td><td>2024/25 sep 2</td><td>09.10.2025.</td></tr>
+                    <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>8</td><td>6</td><td>2024/25 sep 1</td><td>13.09.2025.</td></tr>
+                    <tr><td>11</td><td>13S111OPT2</td><td>Osnovi računarske tehnike 2</td><td>6</td><td>6</td><td>2024/25 sep 1</td><td>15.09.2025.</td></tr>
+                    <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture pod. 1</td><td>6</td><td>6</td><td>2024/25 jul 1</td><td>18.06.2025.</td></tr>
+                    <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>6</td><td>6</td><td>2023/24 avgust</td><td>31.08.2024.</td></tr>
+                    <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>8</td><td>5</td><td>2020/21 jul</td><td>04.07.2021.</td></tr>
+                    <tr><td>15</td><td>13S111ORT1</td><td>Osnovi računarske tehnike 1</td><td>7</td><td>5</td><td>2020/21 jun</td><td>30.06.2021.</td></tr>
+                    <tr><td>16</td><td>13S111P2</td><td>Praktikum iz programiranja 2</td><td>7</td><td>3</td><td>2020/21 jul</td><td>05.07.2021.</td></tr>
+                    <tr><td>17</td><td>13S081M2</td><td>Praktikum iz matematike 2</td><td>9</td><td>2</td><td>2020/21 jun</td><td>10.06.2021.</td></tr>
+                    <tr><td>18</td><td>13S081EJB</td><td>Engleski jezik - bazični</td><td>9</td><td>2</td><td>2020/21 jun</td><td>12.06.2021.</td></tr>
+                    <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>7</td><td>5</td><td>2020/21 jun</td><td>14.06.2021.</td></tr>
+                    <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>7</td><td>5</td><td>2020/21 feb</td><td>12.02.2021.</td></tr>
+                    <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>8</td><td>5</td><td>2020/21 feb</td><td>11.02.2021.</td></tr>
+                    <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz programiranja 1</td><td>9</td><td>3</td><td>2020/21 feb</td><td>09.02.2021.</td></tr>
+                    <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>9</td><td>5</td><td>2020/21 feb</td><td>14.02.2021.</td></tr>
+                    <tr><td>24</td><td>13S081EJN</td><td>Engleski jezik - niži</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
+                    <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz matematike 1</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
+                    <tr><td>26</td><td>13S061F</td><td>Fizika</td><td>9</td><td>5</td><td>2020/21 jan</td><td>26.01.2021.</td></tr>
+                    <tr><td>27</td><td>24S111UVR</td><td>Uvod u računarstvo</td><td>10</td><td>2</td><td>2020/21 jan</td><td>30.01.2021.</td></tr>
                 </tbody>
             </table>
             <div style="font-size:0.7em; font-weight:bold; background:#eee; padding:5px;">Prosečna ocena: 7,52 | Zbir ESPB poena: 126</div>
@@ -94,18 +94,38 @@
 
         <div id="sekcija-uplate" class="hidden">
             <h2>Školarine i Uplate</h2>
-            <div class="sub-tabs"><div class="sub-tab active">Školarine</div><div class="sub-tab">Uplate</div><div class="sub-tab">Račun studenta</div></div>
+            <div class="sub-tabs">
+                <div id="tab-skolarine" class="sub-tab active" onclick="prikaziUplateTab('skolarine')">Školarine</div>
+                <div id="tab-priznanice" class="sub-tab" onclick="prikaziUplateTab('priznanice')">Uplate</div>
+                <div class="sub-tab">Račun studenta</div>
+            </div>
+
             <div class="info-bar"><span>Stanje na računu: 3.551,00</span><span>Dugovanje: 0,00</span></div>
-            <table>
-                <thead><tr><th>Škol. god.</th><th>God.</th><th>Status</th><th>Tip</th><th>Rata</th><th>Iznos</th><th>Rok</th></tr></thead>
-                <tbody>
-                    <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
-                    <tr><td>2024/25</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
-                    <tr><td>2023/24</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
-                    <tr><td>2022/23</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2023.</td></tr>
-                    <tr><td>2020/21</td><td>prva</td><td>samofin.</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
-                </tbody>
-            </table>
+
+            <div id="sub-sekcija-skolarine">
+                <table>
+                    <thead><tr><th>Škol. god.</th><th>God.</th><th>Status</th><th>Tip</th><th>Rata</th><th>Iznos</th><th>Rok</th></tr></thead>
+                    <tbody>
+                        <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
+                        <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
+                        <tr><td>2024/25</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                        <tr><td>2020/21</td><td>prva</td><td>samofin.</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="sub-sekcija-priznanice" class="hidden">
+                <table>
+                    <thead><tr><th>Datum uplate</th><th>Iznos (RSD)</th><th>Svrha</th><th>Poziv na broj</th></tr></thead>
+                    <tbody>
+                        <tr><td>20.03.2026.</td><td>1.500,00</td><td>Prijava ispita - mart</td><td>14122026bs200179</td></tr>
+                        <tr><td>12.02.2026.</td><td>84.600,00</td><td>Školarina - III rata</td><td>14122026bs200179</td></tr>
+                        <tr><td>15.12.2025.</td><td>70.500,00</td><td>Školarina - II rata</td><td>14122026bs200179</td></tr>
+                        <tr><td>28.10.2025.</td><td>70.500,00</td><td>Školarina - I rata</td><td>14122026bs200179</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="uplatnica-box">
                 <div class="upl-left">
                     <div class="field-box"><label>uplatilac</label><div class="field-val">Sofija Brajović<br>Adresa stanovanja, Mesto</div></div>
@@ -129,6 +149,15 @@
         document.getElementById('sekcija-' + id).classList.remove('hidden');
         document.querySelectorAll('.sidebar li').forEach(li => li.classList.remove('active'));
         el.classList.add('active');
+    }
+
+    function prikaziUplateTab(tabId) {
+        document.getElementById('sub-sekcija-skolarine').classList.add('hidden');
+        document.getElementById('sub-sekcija-priznanice').classList.add('hidden');
+        document.getElementById('sub-sekcija-' + tabId).classList.remove('hidden');
+        document.getElementById('tab-skolarine').classList.remove('active');
+        document.getElementById('tab-priznanice').classList.remove('active');
+        document.getElementById('tab-' + tabId).classList.add('active');
     }
 </script>
 </body>
