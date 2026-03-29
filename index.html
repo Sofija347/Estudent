@@ -2,45 +2,56 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>eStudent - Sofija Brajović</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; background-color: #fff; color: #333; }
-        header { background: #a30000; color: white; padding: 5px 15px; border-bottom: 3px solid #800000; position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; height: 50px; }
-        .logo-text { font-size: 1.4em; font-weight: bold; }
-        .user-pill { background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 15px; font-size: 0.75em; border: 1px solid #ff9900; display: flex; align-items: center; gap: 5px; }
-        .main-container { display: flex; }
-        .sidebar { width: 180px; background: #f0f0f0; border-right: 1px solid #ccc; min-height: 100vh; flex-shrink: 0; }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #fff; color: #333; overflow-x: hidden; }
+        header { background: #a30000; color: white; padding: 5px 10px; border-bottom: 2px solid #800000; display: flex; align-items: center; justify-content: space-between; height: 40px; position: sticky; top: 0; z-index: 1000; width: 100%; box-sizing: border-box; }
+        .logo-text { font-size: 1.1em; font-weight: bold; }
+        .user-pill { background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 12px; font-size: 0.55em; border: 1px solid #ff9900; }
+
+        .main-container { display: flex; width: 100%; min-height: 100vh; }
+        .sidebar { width: 105px; background: #f0f0f0; border-right: 1px solid #ccc; flex-shrink: 0; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar li { padding: 6px 12px; border-bottom: 1px solid #ddd; color: #444; cursor: pointer; font-size: 0.68em; text-align: right; }
+        .sidebar li { padding: 7px 5px; border-bottom: 1px solid #ddd; color: #444; font-size: 0.52em; text-align: right; line-height: 1.2; cursor: pointer; }
         .sidebar li.active { background: #a8b8c8; color: white; font-weight: bold; }
-        .content { flex-grow: 1; padding: 15px; overflow-x: auto; }
-        h2 { font-size: 1.1em; color: #444; border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 5px; }
-        .sub-tabs { display: flex; gap: 2px; margin-bottom: 10px; }
-        .sub-tab { background: #e0e0e0; border: 1px solid #999; padding: 3px 10px; font-size: 0.65em; cursor: pointer; }
+
+        .content { flex-grow: 1; padding: 10px; width: calc(100% - 105px); box-sizing: border-box; }
+        h2 { font-size: 0.85em; color: #444; border-bottom: 1px solid #ccc; margin-bottom: 8px; padding-bottom: 3px; }
+        
+        .sub-tabs { display: flex; gap: 1px; margin-bottom: 8px; }
+        .sub-tab { background: #e0e0e0; border: 1px solid #999; padding: 2px 5px; font-size: 0.52em; cursor: pointer; }
         .sub-tab.active { background: #fff; border-bottom: none; font-weight: bold; }
-        .info-bar { border: 1px solid #ccc; padding: 8px; font-size: 0.65em; margin-bottom: 10px; display: flex; gap: 30px; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.62em; margin-bottom: 20px; }
-        th { background: #555; color: white; padding: 5px; border: 1px solid #333; font-weight: normal; }
-        td { border: 1px solid #ccc; padding: 5px; }
+
+        .info-bar { border: 1px solid #ccc; padding: 4px; font-size: 0.5em; margin-bottom: 8px; display: flex; justify-content: space-around; background: #fafafa; }
+
+        .table-wrapper { width: 100%; overflow-x: hidden; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.44em; table-layout: fixed; }
+        th { background: #555; color: white; padding: 3px 1px; border: 1px solid #333; font-weight: normal; }
+        td { border: 1px solid #ccc; padding: 3px 1px; text-align: center; word-wrap: break-word; }
         tr:nth-child(even) { background: #f2f2f2; }
-        .uplatnica-box { border: 1px solid #000; padding: 15px; display: flex; background: #fff; position: relative; max-width: 700px; margin-top: 20px; }
-        .uplatnica-box::after { content: "NALOG ZA UPLATU"; position: absolute; right: 10px; top: 5px; font-weight: bold; font-size: 0.8em; }
-        .upl-left { width: 60%; border-right: 1px solid #000; padding-right: 10px; }
-        .upl-right { width: 40%; padding-left: 10px; }
-        .field-box { border: 1px solid #000; margin-bottom: 10px; min-height: 40px; padding: 2px 5px; }
-        .field-box label { font-size: 0.5em; text-transform: lowercase; display: block; }
-        .field-val { font-size: 0.8em; font-weight: bold; font-family: monospace; }
-        .qr-final { text-align: center; margin-top: 20px; }
-        .qr-final img { width: 200px; height: 200px; border: 1px solid #ccc; }
+        
+        .col-naziv { text-align: left; padding-left: 2px; }
+
+        .uplatnica-box { border: 1px solid #000; padding: 6px; display: flex; background: #fff; max-width: 100%; margin-top: 15px; box-sizing: border-box; position: relative; }
+        .uplatnica-box::after { content: "NALOG ZA UPLATU"; position: absolute; right: 5px; top: 2px; font-size: 0.4em; font-weight: bold; }
+        .upl-left { width: 55%; border-right: 1px solid #000; padding-right: 4px; }
+        .upl-right { width: 45%; padding-left: 4px; }
+        .field-box { border: 1px solid #000; margin-bottom: 4px; min-height: 22px; padding: 1px 2px; }
+        .field-box label { font-size: 0.35em; text-transform: lowercase; display: block; line-height: 1; }
+        .field-val { font-size: 0.55em; font-weight: bold; font-family: monospace; }
+        
+        .qr-section { text-align: center; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 10px; }
+        .qr-section img { width: 110px; height: 110px; }
         .hidden { display: none; }
+        .footer-summary { font-size: 0.5em; font-weight: bold; background: #eee; padding: 4px; margin-top: 5px; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo-text">eStudent</div>
-    <div class="user-pill">Sofija Brajović (bs200179) <span style="background:#ff9900; color:black; padding:0 3px; border-radius:3px;">kraj rada</span></div>
+    <div class="user-pill">Sofija Brajović (bs200179) <span style="color:#ff9900; font-weight:bold;">kraj rada</span></div>
 </header>
 
 <div class="main-container">
@@ -48,7 +59,7 @@
         <ul>
             <li>Početna</li><li>Molba</li><li>Staro obaveštenje</li><li>ŠV-20</li><li>Ispitni rokovi</li><li>Prijava ispita</li><li>Ispiti</li>
             <li id="m-ispiti" class="active" onclick="prikazi('ispiti', this)">Položeni ispiti</li>
-            <li>Sticanje uslova</li><li>Napuštanje fakulteta</li><li>Aktivnosti</li><li>Spiskovi</li>
+            <li>Sticanje uslova</li><li>Aktivnosti</li><li>Spiskovi</li>
             <li id="m-uplate" onclick="prikazi('uplate', this)">Školarine i uplate</li>
             <li>Završni rad</li><li>Kraj rada</li>
         </ul>
@@ -57,39 +68,43 @@
     <main class="content">
         <div id="sekcija-ispiti">
             <h2>Položeni ispiti</h2>
-            <table>
-                <thead><tr><th>Rbr.</th><th>Akronim</th><th>Naziv</th><th>Ocena</th><th>ESPB</th><th>Rok</th><th>Datum</th></tr></thead>
-                <tbody>
-                    <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture podataka 2</td><td>6</td><td>6</td><td>2025/26 feb</td><td>24.03.2026.</td></tr>
-                    <tr><td>2</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td><td>2025/26 feb</td><td>11.03.2026.</td></tr>
-                    <tr><td>3</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td><td>2025/26 jan</td><td>22.02.2026.</td></tr>
-                    <tr><td>4</td><td>13S112IS</td><td>Inteligentni sistemi</td><td>6</td><td>6</td><td>2025/26 jan</td><td>21.02.2026.</td></tr>
-                    <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>6</td><td>6</td><td>2024/25 okt 2</td><td>23.10.2025.</td></tr>
-                    <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>8</td><td>6</td><td>2024/25 okt 2</td><td>12.10.2025.</td></tr>
-                    <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>7</td><td>6</td><td>2024/25 okt 1</td><td>15.10.2025.</td></tr>
-                    <tr><td>8</td><td>13S082PMT</td><td>Principi modernih telekom.</td><td>7</td><td>6</td><td>2024/25 sep 2</td><td>30.09.2025.</td></tr>
-                    <tr><td>9</td><td>13S111OPRT</td><td>Praktikum iz osnova prog.</td><td>6</td><td>3</td><td>2024/25 sep 2</td><td>09.10.2025.</td></tr>
-                    <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>8</td><td>6</td><td>2024/25 sep 1</td><td>13.09.2025.</td></tr>
-                    <tr><td>11</td><td>13S111OPT2</td><td>Osnovi računarske tehnike 2</td><td>6</td><td>6</td><td>2024/25 sep 1</td><td>15.09.2025.</td></tr>
-                    <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture pod. 1</td><td>6</td><td>6</td><td>2024/25 jul 1</td><td>18.06.2025.</td></tr>
-                    <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>6</td><td>6</td><td>2023/24 avgust</td><td>31.08.2024.</td></tr>
-                    <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>8</td><td>5</td><td>2020/21 jul</td><td>04.07.2021.</td></tr>
-                    <tr><td>15</td><td>13S111ORT1</td><td>Osnovi računarske tehnike 1</td><td>7</td><td>5</td><td>2020/21 jun</td><td>30.06.2021.</td></tr>
-                    <tr><td>16</td><td>13S111P2</td><td>Praktikum iz programiranja 2</td><td>7</td><td>3</td><td>2020/21 jul</td><td>05.07.2021.</td></tr>
-                    <tr><td>17</td><td>13S081M2</td><td>Praktikum iz matematike 2</td><td>9</td><td>2</td><td>2020/21 jun</td><td>10.06.2021.</td></tr>
-                    <tr><td>18</td><td>13S081EJB</td><td>Engleski jezik - bazični</td><td>9</td><td>2</td><td>2020/21 jun</td><td>12.06.2021.</td></tr>
-                    <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>7</td><td>5</td><td>2020/21 jun</td><td>14.06.2021.</td></tr>
-                    <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>7</td><td>5</td><td>2020/21 feb</td><td>12.02.2021.</td></tr>
-                    <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>8</td><td>5</td><td>2020/21 feb</td><td>11.02.2021.</td></tr>
-                    <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz programiranja 1</td><td>9</td><td>3</td><td>2020/21 feb</td><td>09.02.2021.</td></tr>
-                    <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>9</td><td>5</td><td>2020/21 feb</td><td>14.02.2021.</td></tr>
-                    <tr><td>24</td><td>13S081EJN</td><td>Engleski jezik - niži</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
-                    <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz matematike 1</td><td>10</td><td>2</td><td>2020/21 jan</td><td>23.01.2021.</td></tr>
-                    <tr><td>26</td><td>13S061F</td><td>Fizika</td><td>9</td><td>5</td><td>2020/21 jan</td><td>26.01.2021.</td></tr>
-                    <tr><td>27</td><td>24S111UVR</td><td>Uvod u računarstvo</td><td>10</td><td>2</td><td>2020/21 jan</td><td>30.01.2021.</td></tr>
-                </tbody>
-            </table>
-            <div style="font-size:0.7em; font-weight:bold; background:#eee; padding:5px;">Prosečna ocena: 7,52 | Zbir ESPB poena: 126</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th style="width:7%">Rbr.</th><th style="width:18%">Akronim</th><th style="width:35%">Naziv</th><th style="width:10%">Ocena</th><th style="width:10%">ESPB</th><th style="width:20%">Datum</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>13S111ASP2</td><td class="col-naziv">Algoritmi i strukture podataka 2</td><td>6</td><td>6</td><td>24.03.2026.</td></tr>
+                        <tr><td>2</td><td>13S112TS</td><td class="col-naziv">Testiranje softvera</td><td>9</td><td>6</td><td>11.03.2026.</td></tr>
+                        <tr><td>3</td><td>13S112RM2</td><td class="col-naziv">Računarske mreže 2</td><td>7</td><td>6</td><td>22.02.2026.</td></tr>
+                        <tr><td>4</td><td>13S112IS</td><td class="col-naziv">Inteligentni sistemi</td><td>6</td><td>6</td><td>21.02.2026.</td></tr>
+                        <tr><td>5</td><td>13S112AR</td><td class="col-naziv">Arhitektura računara</td><td>6</td><td>6</td><td>23.10.2025.</td></tr>
+                        <tr><td>6</td><td>13S112RM1</td><td class="col-naziv">Računarske mreže 1</td><td>8</td><td>6</td><td>12.10.2025.</td></tr>
+                        <tr><td>7</td><td>13S082VS</td><td class="col-naziv">Verovatnoća i statistika</td><td>7</td><td>6</td><td>15.10.2025.</td></tr>
+                        <tr><td>8</td><td>13S082PMT</td><td class="col-naziv">Principi modernih telekom.</td><td>7</td><td>6</td><td>30.09.2025.</td></tr>
+                        <tr><td>9</td><td>13S111OPRT</td><td class="col-naziv">Praktikum iz osnova prog.</td><td>6</td><td>3</td><td>09.10.2025.</td></tr>
+                        <tr><td>10</td><td>13S112IS1</td><td class="col-naziv">Informacioni sistemi 1</td><td>8</td><td>6</td><td>13.09.2025.</td></tr>
+                        <tr><td>11</td><td>13S111OPT2</td><td class="col-naziv">Osnovi računarske tehnike 2</td><td>6</td><td>6</td><td>15.09.2025.</td></tr>
+                        <tr><td>12</td><td>13S111ASP1</td><td class="col-naziv">Algoritmi i strukture pod. 1</td><td>6</td><td>6</td><td>18.06.2025.</td></tr>
+                        <tr><td>13</td><td>13S112BP1</td><td class="col-naziv">Baze podataka 1</td><td>6</td><td>6</td><td>31.08.2024.</td></tr>
+                        <tr><td>14</td><td>13S081M2</td><td class="col-naziv">Matematika 2</td><td>8</td><td>5</td><td>04.07.2021.</td></tr>
+                        <tr><td>15</td><td>13S111ORT1</td><td class="col-naziv">Osnovi računarske tehnike 1</td><td>7</td><td>5</td><td>30.06.2021.</td></tr>
+                        <tr><td>16</td><td>13S111P2</td><td class="col-naziv">Praktikum iz programiranja 2</td><td>7</td><td>3</td><td>05.07.2021.</td></tr>
+                        <tr><td>17</td><td>13S081PM2</td><td class="col-naziv">Praktikum iz matematike 2</td><td>9</td><td>2</td><td>10.06.2021.</td></tr>
+                        <tr><td>18</td><td>13S081EJB</td><td class="col-naziv">Engleski jezik - bazični</td><td>9</td><td>2</td><td>12.06.2021.</td></tr>
+                        <tr><td>19</td><td>13S111P2</td><td class="col-naziv">Programiranje 2</td><td>7</td><td>5</td><td>14.06.2021.</td></tr>
+                        <tr><td>20</td><td>13S041OE</td><td class="col-naziv">Osnovi elektronike</td><td>7</td><td>5</td><td>12.02.2021.</td></tr>
+                        <tr><td>21</td><td>13S111P1</td><td class="col-naziv">Programiranje 1</td><td>8</td><td>5</td><td>11.02.2021.</td></tr>
+                        <tr><td>22</td><td>13S111PP1</td><td class="col-naziv">Praktikum iz programiranja 1</td><td>9</td><td>3</td><td>09.02.2021.</td></tr>
+                        <tr><td>23</td><td>13S081M1</td><td class="col-naziv">Matematika 1</td><td>9</td><td>5</td><td>14.02.2021.</td></tr>
+                        <tr><td>24</td><td>13S081EJN</td><td class="col-naziv">Engleski jezik - niži</td><td>10</td><td>2</td><td>23.01.2021.</td></tr>
+                        <tr><td>25</td><td>13S081PM1</td><td class="col-naziv">Praktikum iz matematike 1</td><td>10</td><td>2</td><td>23.01.2021.</td></tr>
+                        <tr><td>26</td><td>13S061F</td><td class="col-naziv">Fizika</td><td>9</td><td>5</td><td>26.01.2021.</td></tr>
+                        <tr><td>27</td><td>24S111UVR</td><td class="col-naziv">Uvod u računarstvo</td><td>10</td><td>2</td><td>30.01.2021.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-summary">Prosečna ocena: 7,52 | Zbir ESPB poena: 126</div>
         </div>
 
         <div id="sekcija-uplate" class="hidden">
@@ -100,44 +115,56 @@
                 <div class="sub-tab">Račun studenta</div>
             </div>
 
-            <div class="info-bar"><span>Stanje na računu: 3.551,00</span><span>Dugovanje: 0,00</span></div>
+            <div class="info-bar"><span>Stanje: 3.551,00</span><span>Dug: 0,00</span></div>
 
-            <div id="sub-sekcija-skolarine">
+            <div id="sub-sekcija-skolarine" class="table-wrapper">
                 <table>
-                    <thead><tr><th>Škol. god.</th><th>God.</th><th>Status</th><th>Tip</th><th>Rata</th><th>Iznos</th><th>Rok</th></tr></thead>
+                    <thead><tr><th>Škol. god.</th><th>Rata</th><th>Iznos</th><th>Rok</th></tr></thead>
                     <tbody>
-                        <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
-                        <tr><td>2025/26</td><td>druga</td><td>samofin.</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
-                        <tr><td>2024/25</td><td>druga</td><td>samofin.</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
-                        <tr><td>2020/21</td><td>prva</td><td>samofin.</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
+                        <tr><td>2025/26</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
+                        <tr><td>2025/26</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
+                        <tr><td>2025/26</td><td>2</td><td>70.500,00</td><td>19.12.2025.</td></tr>
+                        <tr><td>2025/26</td><td>1</td><td>70.500,00</td><td>30.11.2025.</td></tr>
+                        <tr><td>2024/25</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                        <tr><td>2024/25</td><td>3</td><td>69.019,50</td><td>01.05.2025.</td></tr>
+                        <tr><td>2023/24</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
+                        <tr><td>2022/23</td><td>4</td><td>64.933,34</td><td>01.05.2023.</td></tr>
+                        <tr><td>2021/22</td><td>4</td><td>64.933,34</td><td>01.05.2022.</td></tr>
+                        <tr><td>2020/21</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="sub-sekcija-priznanice" class="hidden">
+            <div id="sub-sekcija-priznanice" class="hidden table-wrapper">
                 <table>
-                    <thead><tr><th>Datum uplate</th><th>Iznos (RSD)</th><th>Svrha</th><th>Poziv na broj</th></tr></thead>
+                    <thead><tr><th>Datum</th><th>Iznos (RSD)</th><th>Svrha uplate</th></tr></thead>
                     <tbody>
-                        <tr><td>20.03.2026.</td><td>1.500,00</td><td>Prijava ispita - mart</td><td>14122026bs200179</td></tr>
-                        <tr><td>12.02.2026.</td><td>84.600,00</td><td>Školarina - III rata</td><td>14122026bs200179</td></tr>
-                        <tr><td>15.12.2025.</td><td>70.500,00</td><td>Školarina - II rata</td><td>14122026bs200179</td></tr>
-                        <tr><td>28.10.2025.</td><td>70.500,00</td><td>Školarina - I rata</td><td>14122026bs200179</td></tr>
+                        <tr><td>20.03.2026.</td><td>1.500,00</td><td>Prijava ispita - mart</td></tr>
+                        <tr><td>12.02.2026.</td><td>84.600,00</td><td>Školarina 2025/26 - III rata</td></tr>
+                        <tr><td>15.12.2025.</td><td>70.500,00</td><td>Školarina 2025/26 - II rata</td></tr>
+                        <tr><td>28.10.2025.</td><td>70.500,00</td><td>Školarina 2025/26 - I rata</td></tr>
+                        <tr><td>10.05.2025.</td><td>69.019,50</td><td>Školarina 2024/25 - IV rata</td></tr>
+                        <tr><td>05.07.2021.</td><td>60.875,00</td><td>Upis godine i školarina</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="uplatnica-box">
                 <div class="upl-left">
-                    <div class="field-box"><label>uplatilac</label><div class="field-val">Sofija Brajović<br>Adresa stanovanja, Mesto</div></div>
+                    <div class="field-box"><label>uplatilac</label><div class="field-val">Sofija Brajović<br>Beograd</div></div>
                     <div class="field-box"><label>svrha uplate</label><div class="field-val">Školarina/Prijava ispita</div></div>
                     <div class="field-box"><label>primalac</label><div class="field-val">ETF Beograd - Sopstveni prihodi</div></div>
                 </div>
                 <div class="upl-right">
-                    <div style="display:flex; gap:5px;"><div class="field-box" style="width:30px;"><label>šifra</label><div class="field-val">253</div></div><div class="field-box" style="flex-grow:1;"><label>račun primaoca</label><div class="field-val">840-31210845-68</div></div></div>
+                    <div style="display:flex; gap:2px;"><div class="field-box" style="width:25%;"><label>šifra</label><div class="field-val">253</div></div><div class="field-box" style="width:75%;"><label>račun primaoca</label><div class="field-val">840-31210845-68</div></div></div>
                     <div class="field-box"><label>poziv na broj</label><div class="field-val">14122026bs200179</div></div>
                 </div>
             </div>
-            <div class="qr-final"><span style="font-size:0.7em; display:block; margin-bottom:5px;">NBS IPS QR kôd</span><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=K:PR|V:01|C:1|R:8403121084568|N:ETF+BEOGRAD|I:RSD|SF:253|RO:14122026bs200179"></div>
+            
+            <div class="qr-section">
+                <div style="font-size:0.45em; margin-bottom:5px;">NBS IPS QR kôd</div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=K:PR|V:01|C:1|R:8403121084568|N:ETF+BEOGRAD|I:RSD|SF:253|RO:14122026bs200179">
+            </div>
         </div>
     </main>
 </div>
