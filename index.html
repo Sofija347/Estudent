@@ -43,6 +43,10 @@
         th { background: #f0f0f0; color: #333; font-weight: bold; text-align: center; }
         tr:nth-child(even) td { background: #f9f9f9; }
 
+        /* FINANSIJSKI DETALJI */
+        .student-account-header { border: 1px solid #ccc; padding: 8px; margin-bottom: 10px; background: #fff; font-size: 8px; }
+        .account-row { display: flex; justify-content: flex-start; gap: 20px; margin-bottom: 4px; }
+
         /* UPLATNICA */
         .uplatnica-form { border: 1px solid #000; padding: 10px; max-width: 550px; background: #fff; margin-top: 10px; }
         .label-up { font-size: 6px; text-transform: lowercase; display: block; }
@@ -92,35 +96,36 @@
             <div class="main-content">
                 
                 <div id="v-uplate" class="view" style="display:block;">
-                    <h2 style="font-size:12px;">Pregled uplata</h2>
+                    <h2 style="font-size:11px; margin-bottom:10px;">Školarine i Uplate</h2>
+                    
+                    <div class="student-account-header">
+                        <div class="account-row">
+                            <span>Stanje na računu: <strong>3.551,00</strong></span>
+                            <span>Ukupno dugovanje na današnji dan: <strong>0,00</strong></span>
+                        </div>
+                        <div class="account-row">
+                            <span>Ukupno dugovanje: <strong>84.600,00</strong></span>
+                            <span>Ukupna školarina za poslednji upis:</span>
+                        </div>
+                    </div>
+
                     <table>
                         <thead>
-                            <tr><th>Šk. god.</th><th>God.</th><th>Finans.</th><th>Svrha</th><th>Rata</th><th>Iznos (RSD)</th><th>Rok</th></tr>
+                            <tr><th>Školska godina</th><th>Godina studija</th><th>Status upisa</th><th>Način upisa</th><th>Tip uplate</th><th>Rata</th><th>Iznos</th><th>Rok uplate</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
-                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>70.500,00</td><td>19.12.2025.</td></tr>
-                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>70.500,00</td><td>30.11.2025.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>69.019,50</td><td>01.09.2025.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.05.2025.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>62.745,00</td><td>01.12.2024.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>62.745,00</td><td>31.10.2024.</td></tr>
-                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
-                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>75.200,00</td><td>15.03.2024.</td></tr>
-                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>70.500,00</td><td>01.12.2023.</td></tr>
-                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>70.500,00</td><td>31.10.2023.</td></tr>
-                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2023.</td></tr>
-                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2023.</td></tr>
-                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2022.</td></tr>
-                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2022.</td></tr>
-                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2022.</td></tr>
-                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2022.</td></tr>
-                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2021.</td></tr>
-                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2021.</td></tr>
-                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>60.875,00</td><td>01.05.2021.</td></tr>
-                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>60.875,00</td><td>15.03.2021.</td></tr>
-                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2020.</td></tr>
-                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>70.500,00</td><td>19.12.2025.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>70.500,00</td><td>30.11.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.05.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>62.745,00</td><td>01.12.2024.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>62.745,00</td><td>31.10.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>75.200,00</td><td>15.03.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>70.500,00</td><td>01.12.2023.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>70.500,00</td><td>31.10.2023.</td></tr>
                         </tbody>
                     </table>
                     
@@ -142,7 +147,7 @@
                                 <span class="label-up" style="margin-top:5px;">račun primaoca</span>
                                 <span class="val-up">840-32904645-58</span>
                                 <span class="label-up" style="margin-top:5px;">poziv na broj</span>
-                                <span class="val-up">2405001715027</span>
+                                <span class="val-up">141220200179</span>
                                 <div class="qr-img">IPS QR KOD</div>
                             </div>
                         </div>
@@ -152,49 +157,37 @@
                 <div id="v-ispiti" class="view">
                     <h2 style="font-size:12px;">Položeni ispiti</h2>
                     <table>
-                        <thead><tr><th>#</th><th>Akronim</th><th>Naziv</th><th>Oc.</th><th>E.</th></tr></thead>
+                        <thead><tr><th>#</th><th>Akronim</th><th>Naziv</th><th>Profesor</th><th>Oc.</th><th>E.</th></tr></thead>
                         <tbody>
-                            <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture 2</td><td>6</td><td>6</td></tr>
-                            <tr><td>2</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td></tr>
-                            <tr><td>3</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td></tr>
-                            <tr><td>4</td><td>13S112MC</td><td>Inteligentni sistemi</td><td>8</td><td>6</td></tr>
-                            <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>7</td><td>6</td></tr>
-                            <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>8</td><td>6</td></tr>
-                            <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>6</td><td>4</td></tr>
-                            <tr><td>8</td><td>13S033PMT</td><td>Principi mod. telekom.</td><td>6</td><td>6</td></tr>
-                            <tr><td>9</td><td>13S111PRT</td><td>Praktikum iz ORT</td><td>10</td><td>3</td></tr>
-                            <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>7</td><td>6</td></tr>
-                            <tr><td>11</td><td>13S112ORT2</td><td>Osnovi rač. tehnike 2</td><td>6</td><td>6</td></tr>
-                            <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture 1</td><td>7</td><td>6</td></tr>
-                            <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>6</td><td>6</td></tr>
-                            <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>7</td><td>6</td></tr>
-                            <tr><td>15</td><td>13S111ORT1</td><td>Osnovi rač. tehnike 1</td><td>8</td><td>6</td></tr>
-                            <tr><td>16</td><td>13S111P2</td><td>Praktikum iz prog. 2</td><td>10</td><td>3</td></tr>
-                            <tr><td>17</td><td>13S081PM2</td><td>Praktikum iz mat. 2</td><td>10</td><td>2</td></tr>
-                            <tr><td>18</td><td>13S091EJB</td><td>Engleski jezik - viši</td><td>9</td><td>3</td></tr>
-                            <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>6</td><td>6</td></tr>
-                            <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>7</td><td>6</td></tr>
-                            <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>6</td><td>6</td></tr>
-                            <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz prog. 1</td><td>9</td><td>3</td></tr>
-                            <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>7</td><td>6</td></tr>
-                            <tr><td>24</td><td>13S091EJN</td><td>Engleski jezik - niži</td><td>8</td><td>3</td></tr>
-                            <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz mat. 1</td><td>9</td><td>2</td></tr>
-                            <tr><td>26</td><td>13S051F</td><td>Fizika</td><td>6</td><td>6</td></tr>
-                            <tr><td>27</td><td>24011UVRA</td><td>Uvod u računarstvo</td><td>10</td><td>3</td></tr>
+                            <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture 2</td><td>Milo Tomašević</td><td>6</td><td>6</td></tr>
+                            <tr><td>2</td><td>13S112TS</td><td>Testiranje softvera</td><td>Dražen Drašković</td><td>9</td><td>6</td></tr>
+                            <tr><td>3</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>Žarko Stanisavljević</td><td>7</td><td>6</td></tr>
+                            <tr><td>4</td><td>13S112MC</td><td>Inteligentni sistemi</td><td>Boško Nikolić</td><td>8</td><td>6</td></tr>
+                            <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>Zaharije Radivojević</td><td>7</td><td>6</td></tr>
+                            <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>Pavle Vuletić</td><td>8</td><td>6</td></tr>
+                            <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>Slobodan Vujić</td><td>6</td><td>4</td></tr>
+                            <tr><td>8</td><td>13S033PMT</td><td>Principi mod. telekom.</td><td>Predrag Ivaniš</td><td>6</td><td>6</td></tr>
+                            <tr><td>9</td><td>13S111PRT</td><td>Praktikum iz ORT</td><td>Jelena Nikolić</td><td>10</td><td>3</td></tr>
+                            <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>Slavica Kostić</td><td>7</td><td>6</td></tr>
+                            <tr><td>11</td><td>13S112ORT2</td><td>Osnovi rač. tehnike 2</td><td>Igor Ikodinović</td><td>6</td><td>6</td></tr>
+                            <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture 1</td><td>Milo Tomašević</td><td>7</td><td>6</td></tr>
+                            <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>Pavle Vuletić</td><td>6</td><td>6</td></tr>
+                            <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>Miodrag Spalević</td><td>7</td><td>6</td></tr>
+                            <tr><td>15</td><td>13S111ORT1</td><td>Osnovi rač. tehnike 1</td><td>Igor Ikodinović</td><td>8</td><td>6</td></tr>
+                            <tr><td>16</td><td>13S111P2</td><td>Praktikum iz prog. 2</td><td>Dragan Bojić</td><td>10</td><td>3</td></tr>
+                            <tr><td>17</td><td>13S081PM2</td><td>Praktikum iz mat. 2</td><td>Miodrag Spalević</td><td>10</td><td>2</td></tr>
+                            <tr><td>18</td><td>13S091EJB</td><td>Engleski jezik - viši</td><td>Marija Milojković</td><td>9</td><td>3</td></tr>
+                            <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>Dragan Bojić</td><td>6</td><td>6</td></tr>
+                            <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>Lazar Saranovac</td><td>7</td><td>6</td></tr>
+                            <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>Boško Nikolić</td><td>6</td><td>6</td></tr>
+                            <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz prog. 1</td><td>Boško Nikolić</td><td>9</td><td>3</td></tr>
+                            <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>Miodrag Spalević</td><td>7</td><td>6</td></tr>
+                            <tr><td>24</td><td>13S091EJN</td><td>Engleski jezik - niži</td><td>Marija Milojković</td><td>8</td><td>3</td></tr>
+                            <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz mat. 1</td><td>Miodrag Spalević</td><td>9</td><td>2</td></tr>
+                            <tr><td>26</td><td>13S051F</td><td>Fizika</td><td>Jasna Crnjanski</td><td>6</td><td>6</td></tr>
+                            <tr><td>27</td><td>24011UVRA</td><td>Uvod u računarstvo</td><td>Milo Tomašević</td><td>10</td><td>3</td></tr>
                         </tbody>
                     </table>
-                    <div class="status-box">Prosečna ocena: 7,42 | Ukupno ESPB: 126</div>
-                </div>
-                
-                <div id="v-pocetna" class="view">
-                    <h2 style="color:blue; text-decoration:underline;">Pitanja i odgovori</h2>
-                    <h2 style="color:blue; text-decoration:underline;">Uverenje o studiranju</h2>
-                    <h2 style="color:blue; text-decoration:underline;">Potvrda o useljenju u dom</h2>
-                    <h3 style="margin-top:20px;">Obaveštenja</h3>
-                    <div style="border:1px solid #ccc; padding:10px; font-size:9px;">
-                        <strong>Elektrijada 2026. (27.03 - 03.04.2026.)</strong><br><br>
-                        Prijavljivanje za Elektrijadu se nalazi na studentskim servisima u opciji "Spiskovi".
-                    </div>
                 </div>
 
             </div>
