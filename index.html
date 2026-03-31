@@ -8,6 +8,7 @@
         * { box-sizing: border-box; }
         body { font-family: Verdana, Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #000; font-size: 8px; }
         
+        /* Header */
         .header { 
             background: linear-gradient(to bottom, #d30000 0%, #800000 100%);
             height: 40px; display: flex; align-items: center; padding: 0 10px; color: white;
@@ -22,15 +23,48 @@
         .btn-prijavi { width: 100%; background: #333; color: white; border: none; padding: 12px; border-radius: 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         .login-text-content { margin-top: 25px; border: 1px solid #ccc; padding: 15px; line-height: 1.5; font-size: 10px; text-align: justify; background: #f9f9f9; }
 
-        /* Glavna Aplikacija */
-        .wrapper { display: flex; margin-top: 40px; }
-        .sidebar { width: 85px; background: #eee; border-right: 1px solid #ccc; height: calc(100vh - 40px); position: fixed; left: 0; overflow-y: auto; }
-        .menu-item { padding: 12px 5px; color: #444; font-size: 8px; text-right; border-bottom: 1px solid #ddd; cursor: pointer; font-weight: bold; text-align: right; }
-        .menu-item.active { background: #d0d0d0; color: #b30000; border-right: 3px solid #b30000; }
-
-        .main-content { margin-left: 85px; padding: 10px; width: calc(100% - 85px); }
-        .view { display: none; }
+        /* Glavna struktura sa levim menijem */
+        .wrapper { display: flex; margin-top: 40px; min-height: calc(100vh - 40px); }
         
+        .sidebar { 
+            width: 100px; 
+            background: #f4f4f4; 
+            border-right: 1px solid #ccc; 
+            position: fixed; 
+            left: 0; 
+            top: 40px; 
+            bottom: 0; 
+            overflow-y: auto;
+            z-index: 900;
+        }
+        
+        .menu-item { 
+            padding: 15px 10px; 
+            color: #333; 
+            font-size: 9px; 
+            text-align: right; 
+            border-bottom: 1px solid #ddd; 
+            cursor: pointer; 
+            font-weight: normal;
+        }
+        
+        .menu-item.active { 
+            background: #e5e5e5; 
+            color: #b30000; 
+            font-weight: bold; 
+            border-right: 4px solid #b30000; 
+        }
+
+        /* Glavni sadržaj desno */
+        .main-content { 
+            margin-left: 100px; 
+            padding: 10px; 
+            width: calc(100% - 100px); 
+        }
+        
+        .view { display: none; width: 100%; }
+        
+        /* Tabele */
         table { width: 100%; border-collapse: collapse; table-layout: fixed; word-wrap: break-word; }
         th, td { border: 1px solid #ccc; padding: 4px 2px; text-align: left; vertical-align: top; }
         th { background: #444; color: white; font-weight: normal; }
@@ -76,9 +110,9 @@
 
         <div class="wrapper">
             <div class="sidebar">
+                <div class="menu-item" onclick="prikazi('pocetna', this)">Početna</div>
                 <div class="menu-item active" onclick="prikazi('ispiti', this)">Ispiti</div>
-                <div class="menu-item" onclick="prikazi('uplate', this)">Uplate</div>
-                <div class="menu-item">Početna</div>
+                <div class="menu-item" onclick="prikazi('uplate', this)">Školarine i uplate</div>
                 <div class="menu-item">Kraj rada</div>
             </div>
 
@@ -147,7 +181,7 @@
                         </tbody>
                     </table>
 
-                    <h2>Nalog za uplatu i IPS</h2>
+                    <h2>Podaci za uplatu i IPS kod</h2>
                     <div class="uplatnica-box">
                         <strong>Primalac:</strong> ETF Beograd, Bulevar kralja Aleksandra 73<br>
                         <strong>Svrha:</strong> Školarina - Sofija Brajović<br>
@@ -155,10 +189,10 @@
                         <strong>Poziv na broj (model 97):</strong> 2405001715027<br>
                         <div style="display: flex; justify-content: space-between; align-items: flex-end;">
                             <div>
-                                <strong>IPS kod:</strong>
+                                <strong>IPS QR kod:</strong>
                                 <div class="ips-box">IPS QR<br>KOD</div>
                             </div>
-                            <div style="font-size: 7px; color: #555;">Stanje: 3.551,00 RSD</div>
+                            <div style="font-size: 7px; color: #555;">Stanje na kartici: 3.551,00 RSD</div>
                         </div>
                     </div>
                 </div>
@@ -170,7 +204,13 @@
         function prikazi(viewId, el) {
             document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-            document.getElementById('v-' + viewId).style.display = 'block';
+            
+            // Mapiranje imena iz menija na ID-jeve
+            let targetId = 'v-ispiti';
+            if(viewId === 'uplate') targetId = 'v-uplate';
+            
+            const target = document.getElementById(targetId);
+            if(target) target.style.display = 'block';
             el.classList.add('active');
         }
 
