@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>eStudent - ETF</title>
+    <title>eStudent - ETF Beograd</title>
     <style>
         * { box-sizing: border-box; }
         body { font-family: Verdana, Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #000; font-size: 8px; width: 100%; }
@@ -11,53 +11,65 @@
         /* HEADER */
         .header { 
             background: linear-gradient(to bottom, #d30000 0%, #800000 100%);
-            height: 40px; display: flex; align-items: center; padding: 0 10px; color: white; border-bottom: 1px solid #000;
-            position: fixed; top: 0; width: 100%; z-index: 1000;
+            height: 40px; display: flex; align-items: center; padding: 0 10px; color: white;
+            position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid #000;
         }
         .logo-txt { font-size: 16px; font-weight: bold; font-family: "Times New Roman", serif; }
-        .etf-info-head { border-left: 1px solid rgba(255,255,255,0.3); padding-left: 8px; font-size: 7px; line-height: 1.1; margin-left: 10px; }
-        .user-pill { margin-left: auto; background: rgba(0,0,0,0.5); padding: 3px 6px; border-radius: 10px; font-size: 8px; }
+        .user-info { margin-left: auto; font-size: 8px; background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 10px; }
 
-        /* LOGIN */
-        #login-scr { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; overflow-y: auto; padding: 50px 10px; }
-        .login-input { width: 100%; border: 1px solid #999; padding: 8px; margin: 5px 0 10px; font-size: 14px; display: block; }
-        .btn-prijavi { width: 100%; background: #333; color: white; border: none; padding: 10px; border-radius: 20px; font-weight: bold; cursor: pointer; }
-        .login-text-content { margin-top: 20px; border: 1px solid #ccc; padding: 12px; font-size: 10px; line-height: 1.5; text-align: justify; background: #f9f9f9; }
+        /* LOGIN STRANICA */
+        #login-scr { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; overflow-y: auto; padding: 60px 20px; }
+        .login-box { max-width: 400px; margin: 0 auto; }
+        .login-input { width: 100%; border: 1px solid #999; padding: 8px; margin: 5px 0 12px; font-size: 14px; display: block; border-radius: 4px; }
+        .btn-prijavi { width: 100%; background: #333; color: white; border: none; padding: 12px; border-radius: 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .login-text-content { margin-top: 25px; border: 1px solid #ccc; padding: 15px; line-height: 1.6; font-size: 10px; text-align: justify; background: #f9f9f9; }
 
-        /* LAYOUT SA LEVIM MENIJEM */
-        .wrapper { display: flex; margin-top: 40px; width: 100%; }
-        .sidebar { width: 110px; background: #eee; border-right: 1px solid #ccc; height: calc(100vh - 40px); position: fixed; left: 0; overflow-y: auto; flex-shrink: 0; }
-        .menu-item { display: block; padding: 10px 5px; color: #444; font-size: 8px; text-align: right; border-bottom: 1px solid #ddd; cursor: pointer; }
-        .menu-item.active { background: #d0d0d0; font-weight: bold; border-right: 3px solid #b30000; }
-        
-        .main-content { margin-left: 110px; padding: 10px; width: calc(100% - 110px); }
+        /* LAYOUT */
+        .wrapper { display: flex; margin-top: 40px; width: 100%; min-height: 100vh; }
+        .sidebar { 
+            width: 110px; background: #f4f4f4; border-right: 1px solid #ccc; 
+            height: calc(100vh - 40px); position: fixed; left: 0; overflow-y: auto;
+        }
+        .folder-icon { padding: 15px 10px; text-align: center; background: #fff; border-bottom: 1px solid #ccc; }
+        .menu-item { padding: 8px 5px; color: #444; font-size: 7px; text-align: right; border-bottom: 1px solid #ddd; cursor: pointer; }
+        .menu-item.active { background: #dfdfdf; color: #b30000; font-weight: bold; border-right: 4px solid #b30000; }
+
+        .main-content { margin-left: 110px; padding: 15px; width: calc(100% - 110px); }
         .view { display: none; width: 100%; }
         
-        /* POČETNA - SADRŽAJ */
-        .home-link { color: blue; text-decoration: underline; font-size: 12px; margin-bottom: 10px; display: block; cursor: pointer; }
-        .news-box { border: 1px solid #ccc; width: 100%; margin-top: 15px; }
-        .news-title { background: #444; color: white; padding: 5px 10px; font-weight: bold; font-size: 9px; }
-        .news-body { padding: 10px; font-size: 9px; line-height: 1.5; text-align: justify; }
-
         /* TABELE */
-        table { width: 100%; border-collapse: collapse; table-layout: fixed; word-wrap: break-word; }
-        th, td { border: 1px solid #ccc; padding: 3px 2px; text-align: left; vertical-align: top; }
-        th { background: #444; color: white; font-weight: normal; }
-        tr:nth-child(even) td { background: #f2f2f2; }
-        .status-bar { background: #f0f0f0; border: 1px solid #ccc; padding: 6px; font-size: 9px; margin-top: 10px; }
-        h2 { font-size: 13px; margin: 0 0 10px 0; color: #333; }
+        table { width: 100%; border-collapse: collapse; border: 1px solid #ccc; margin-bottom: 10px; background: #fff; }
+        th, td { border: 1px solid #ccc; padding: 3px 2px; text-align: left; font-size: 7px; }
+        th { background: #f0f0f0; color: #333; font-weight: bold; text-align: center; }
+        tr:nth-child(even) td { background: #f9f9f9; }
+
+        /* UPLATNICA */
+        .uplatnica-form { border: 1px solid #000; padding: 10px; max-width: 550px; background: #fff; margin-top: 10px; }
+        .label-up { font-size: 6px; text-transform: lowercase; display: block; }
+        .val-up { font-size: 8px; font-weight: bold; }
+        .qr-img { width: 60px; height: 60px; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 6px; margin-left: auto; }
     </style>
 </head>
 <body>
 
     <div id="login-scr">
         <div class="header" style="position:absolute; top:0; left:0;"><span class="logo-txt">eStudent</span></div>
-        <div style="max-width:400px; margin:0 auto;">
-            <label>Korisničko ime:</label><input type="text" class="login-input" value="bs200179d">
-            <label>Lozinka:</label><input type="password" class="login-input" value="2405001715027">
+        <div class="login-box">
+            <label>Korisničko ime:</label>
+            <input type="text" class="login-input" value="bs200179d">
+            <label>Lozinka:</label>
+            <input type="password" class="login-input" value="2405001715027">
             <button class="btn-prijavi" onclick="prijaviSe()">PRIJAVI SE</button>
             <div class="login-text-content">
-                Izvršeno je objedinjavanje naloga... primer: student Marko Petrović (0999/08) pristupa sa: <b>pm080999d</b>. Lozinka je JMBG. Radno vreme RC: 09-17h.
+                Izvršeno je objedinjavanje naloga za pristup studentskim servisima i naloga za pristup Veb elektronskoj pošti odnosno studentskim računarima u Računskom centru.
+                <br><br>
+                Sada možete pristupiti svojim podacima preko korisničkog imena i šifre koje koristite za pristup svom nalogu Veb elektronske pošte odnosno studentskim računarima u Računskom centru:
+                <br><br>
+                Primer: student osnovnih studija Marko Petrović, broj indeksa 0999/08 (godina upisa 2008.) pristupa sistemu sa:<br>
+                Korisničko ime: <b>pm080999d</b><br>
+                Lozinka: Inicijalna lozinka prilikom otvaranja naloga je JMBG (ukoliko je niste promenili).
+                <br><br>
+                <b>Ukoliko niste podigli svoj nalog ili ste izgubili lozinku, istu možete dobiti isključivo u Računskom centru ETF radnim danima od 9 do 17 časova uz priložen indeks.</b>
             </div>
         </div>
     </div>
@@ -65,91 +77,140 @@
     <div id="app-main" style="display:none;">
         <div class="header">
             <span class="logo-txt">eStudent</span>
-            <div class="etf-info-head">Elektrotehnički fakultet<br>Univerzitet u Beogradu</div>
-            <div class="user-pill">Sofija Brajović (bs200179d)</div>
+            <div class="user-info">Sofija Brajović (bs200179d)</div>
         </div>
 
         <div class="wrapper">
             <div class="sidebar">
-                <div style="padding:10px; text-align:center; border-bottom:1px solid #ccc; background:#fff;">
-                    <img src="https://student.etf.bg.ac.rs/images/folders.png" alt="fascikla" style="width:70px;">
-                </div>
-                <div class="menu-item active" onclick="prikazi('pocetna', this)">Početna</div>
-                <div class="menu-item" onclick="prikazi('ispiti', this)">Ispiti</div>
-                <div class="menu-item" onclick="prikazi('uplate', this)">Školarine i uplate</div>
-                <div class="menu-item">Molba</div>
-                <div class="menu-item">Stara obaveštenja</div>
-                <div class="menu-item">ŠV 20</div>
-                <div class="menu-item">Ispitni rokovi</div>
-                <div class="menu-item">Prijava ispita</div>
+                <div class="folder-icon"><img src="https://student.etf.bg.ac.rs/images/folders.png" width="70" alt="folder"></div>
+                <div class="menu-item" onclick="show('pocetna', this)">Početna</div>
+                <div class="menu-item" onclick="show('ispiti', this)">Ispiti</div>
+                <div class="menu-item active" onclick="show('uplate', this)">Školarine i uplate</div>
                 <div class="menu-item">Kraj rada</div>
             </div>
 
             <div class="main-content">
                 
-                <div id="v-pocetna" class="view" style="display:block;">
-                    <div class="home-link">Pitanja i odgovori</div>
-                    <div class="home-link">Uverenje o studiranju</div>
-                    <div class="home-link">Potvrda o useljenju u dom</div>
-                    <div style="font-size:15px; margin-top:25px;">Obaveštenja</div>
-                    <div class="news-box">
-                        <div class="news-title">Elektrijada 2026.</div>
-                        <div class="news-body">
-                            <strong>27.03.2026. - 03.04.2026.</strong><br><br>
-                            Prijavljivanje za Elektrijadu se nalazi na studentskim servisima u opciji "Spiskovi". Prijava traje od 27. marta do 3. aprila. Napomena: 1. Moguće je prijaviti se za testiranje iz najviše 3 discipline. 2. Termini testiranja će biti objavljeni nakon završetka prijava. Moguće je preklapanje termina iz različitih disciplina. 3. Sva dalja obaveštenja stizaće na zvanične fakultetske elektronske adrese. 4. Studenti koji prijave Elektroniku takmičiće se u dve discipline: Elektronika 1 i Elektronika 2. 5. Program Matematike 1 na Elektrijadi odgovara programu Matematike 1 i 2, predmeta koji se održavaju na Fakultetu. 6. Program Matematike 2 na Elektrijadi odgovara programu Matematike 3, predmeta koji se održavaju na Fakultetu.
+                <div id="v-uplate" class="view" style="display:block;">
+                    <h2 style="font-size:12px;">Pregled uplata</h2>
+                    <table>
+                        <thead>
+                            <tr><th>Šk. god.</th><th>God.</th><th>Finans.</th><th>Svrha</th><th>Rata</th><th>Iznos (RSD)</th><th>Rok</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>70.500,00</td><td>19.12.2025.</td></tr>
+                            <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>70.500,00</td><td>30.11.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.05.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>62.745,00</td><td>01.12.2024.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>62.745,00</td><td>31.10.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>75.200,00</td><td>15.03.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>70.500,00</td><td>01.12.2023.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>70.500,00</td><td>31.10.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2022.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2021.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>4</td><td>60.875,00</td><td>01.05.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>3</td><td>60.875,00</td><td>15.03.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2020.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="uplatnica-form">
+                        <div style="display:flex;">
+                            <div style="width:60%; border-right:1px solid #000; padding-right:5px;">
+                                <span class="label-up">uplatilac</span>
+                                <span class="val-up">Sofija Brajović<br>Bulevar kralja Aleksandra 73</span>
+                                <span class="label-up" style="margin-top:5px;">svrha uplate</span>
+                                <span class="val-up">Školarina / prijava ispita</span>
+                                <span class="label-up" style="margin-top:5px;">primalac</span>
+                                <span class="val-up">ETF Beograd - Sopstveni prihodi</span>
+                            </div>
+                            <div style="width:40%; padding-left:5px;">
+                                <div style="display:flex; justify-content:space-between;">
+                                    <div><span class="label-up">šifra</span><span class="val-up">253</span></div>
+                                    <div><span class="label-up">iznos</span><span class="val-up">84.600,00</span></div>
+                                </div>
+                                <span class="label-up" style="margin-top:5px;">račun primaoca</span>
+                                <span class="val-up">840-32904645-58</span>
+                                <span class="label-up" style="margin-top:5px;">poziv na broj</span>
+                                <span class="val-up">2405001715027</span>
+                                <div class="qr-img">IPS QR KOD</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="v-ispiti" class="view">
-                    <h2>Položeni ispiti</h2>
+                    <h2 style="font-size:12px;">Položeni ispiti</h2>
                     <table>
-                        <thead>
-                            <tr><th style="width:10%">#</th><th style="width:20%">Akr.</th><th style="width:50%">Predmet</th><th style="width:10%">O</th><th style="width:10%">E</th></tr>
-                        </thead>
+                        <thead><tr><th>#</th><th>Akronim</th><th>Naziv</th><th>Oc.</th><th>E.</th></tr></thead>
                         <tbody>
-                            <tr><td>1</td><td>ASP2</td><td>Algoritmi i strukture 2</td><td>6</td><td>6</td></tr>
-                            <tr><td>2</td><td>TS</td><td>Testiranje softvera</td><td>9</td><td>6</td></tr>
-                            <tr><td>3</td><td>RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td></tr>
-                            <tr><td>4</td><td>MC</td><td>Inteligentni sistemi</td><td>6</td><td>6</td></tr>
-                            <tr><td>5</td><td>AR</td><td>Arhitektura računara</td><td>6</td><td>6</td></tr>
-                            <tr><td>6</td><td>RM1</td><td>Računarske mreže 1</td><td>6</td><td>6</td></tr>
-                            <tr><td>27</td><td>UVRA</td><td>Uvod u računarstvo</td><td>10</td><td>3</td></tr>
+                            <tr><td>1</td><td>13S111ASP2</td><td>Algoritmi i strukture 2</td><td>6</td><td>6</td></tr>
+                            <tr><td>2</td><td>13S112TS</td><td>Testiranje softvera</td><td>9</td><td>6</td></tr>
+                            <tr><td>3</td><td>13S112RM2</td><td>Računarske mreže 2</td><td>7</td><td>6</td></tr>
+                            <tr><td>4</td><td>13S112MC</td><td>Inteligentni sistemi</td><td>8</td><td>6</td></tr>
+                            <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>7</td><td>6</td></tr>
+                            <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>8</td><td>6</td></tr>
+                            <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>6</td><td>4</td></tr>
+                            <tr><td>8</td><td>13S033PMT</td><td>Principi mod. telekom.</td><td>6</td><td>6</td></tr>
+                            <tr><td>9</td><td>13S111PRT</td><td>Praktikum iz ORT</td><td>10</td><td>3</td></tr>
+                            <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>7</td><td>6</td></tr>
+                            <tr><td>11</td><td>13S112ORT2</td><td>Osnovi rač. tehnike 2</td><td>6</td><td>6</td></tr>
+                            <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture 1</td><td>7</td><td>6</td></tr>
+                            <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>6</td><td>6</td></tr>
+                            <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>7</td><td>6</td></tr>
+                            <tr><td>15</td><td>13S111ORT1</td><td>Osnovi rač. tehnike 1</td><td>8</td><td>6</td></tr>
+                            <tr><td>16</td><td>13S111P2</td><td>Praktikum iz prog. 2</td><td>10</td><td>3</td></tr>
+                            <tr><td>17</td><td>13S081PM2</td><td>Praktikum iz mat. 2</td><td>10</td><td>2</td></tr>
+                            <tr><td>18</td><td>13S091EJB</td><td>Engleski jezik - viši</td><td>9</td><td>3</td></tr>
+                            <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>6</td><td>6</td></tr>
+                            <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>7</td><td>6</td></tr>
+                            <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>6</td><td>6</td></tr>
+                            <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz prog. 1</td><td>9</td><td>3</td></tr>
+                            <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>7</td><td>6</td></tr>
+                            <tr><td>24</td><td>13S091EJN</td><td>Engleski jezik - niži</td><td>8</td><td>3</td></tr>
+                            <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz mat. 1</td><td>9</td><td>2</td></tr>
+                            <tr><td>26</td><td>13S051F</td><td>Fizika</td><td>6</td><td>6</td></tr>
+                            <tr><td>27</td><td>24011UVRA</td><td>Uvod u računarstvo</td><td>10</td><td>3</td></tr>
                         </tbody>
                     </table>
-                    <div class="status-bar">Prosečna ocena: <b>7,42</b> | Ukupno ESPB: <b>126</b></div>
+                    <div class="status-box">Prosečna ocena: 7,42 | Ukupno ESPB: 126</div>
+                </div>
+                
+                <div id="v-pocetna" class="view">
+                    <h2 style="color:blue; text-decoration:underline;">Pitanja i odgovori</h2>
+                    <h2 style="color:blue; text-decoration:underline;">Uverenje o studiranju</h2>
+                    <h2 style="color:blue; text-decoration:underline;">Potvrda o useljenju u dom</h2>
+                    <h3 style="margin-top:20px;">Obaveštenja</h3>
+                    <div style="border:1px solid #ccc; padding:10px; font-size:9px;">
+                        <strong>Elektrijada 2026. (27.03 - 03.04.2026.)</strong><br><br>
+                        Prijavljivanje za Elektrijadu se nalazi na studentskim servisima u opciji "Spiskovi".
+                    </div>
                 </div>
 
-                <div id="v-uplate" class="view">
-                    <h2>Školarine i uplate</h2>
-                    <table>
-                        <thead>
-                            <tr><th>Šk. god</th><th>Rt.</th><th>Iznos (RSD)</th><th>Rok</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>25/26</td><td>4</td><td>84.600</td><td>01.05.26.</td></tr>
-                            <tr><td>20/21</td><td>1</td><td>35.000</td><td>31.10.20.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function prikazi(viewId, el) {
-            document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
-            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-            if(viewId === 'ispiti') document.getElementById('v-ispiti').style.display = 'block';
-            if(viewId === 'uplate') document.getElementById('v-uplate').style.display = 'block';
-            if(viewId === 'pocetna') document.getElementById('v-pocetna').style.display = 'block';
-            el.classList.add('active');
-            window.scrollTo(0,0);
-        }
-
         function prijaviSe() {
             document.getElementById('login-scr').style.display = 'none';
             document.getElementById('app-main').style.display = 'block';
+        }
+        function show(id, el) {
+            document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+            document.getElementById('v-' + id).style.display = 'block';
+            el.classList.add('active');
         }
     </script>
 </body>
