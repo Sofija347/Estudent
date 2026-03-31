@@ -45,15 +45,17 @@
         th { background: #f0f0f0; color: #333; font-weight: bold; text-align: center; }
         tr:nth-child(even) td { background: #f9f9f9; }
 
-        /* FINANSIJSKI DETALJI */
-        .student-account-header { border: 1px solid #ccc; padding: 8px; margin-bottom: 10px; background: #fff; font-size: 7px; }
-        .account-row { display: flex; justify-content: flex-start; gap: 15px; margin-bottom: 4px; }
+        /* POČETNA STRANICA */
+        .home-links { font-size: 10px; color: blue; text-decoration: underline; margin-bottom: 8px; cursor: pointer; display: block; }
+        .notice-box { border: 1px solid #ccc; padding: 8px; margin-top: 10px; line-height: 1.4; border-top: 4px solid #444; }
 
         /* UPLATNICA */
         .uplatnica-form { border: 1px solid #000; padding: 10px; max-width: 550px; background: #fff; margin-top: 10px; }
         .label-up { font-size: 6px; text-transform: lowercase; display: block; }
         .val-up { font-size: 8px; font-weight: bold; }
-        .qr-img { width: 60px; height: 60px; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 6px; margin-left: auto; }
+        .ips-qr-container { margin-top: 15px; text-align: left; max-width: 550px; }
+        .real-qr { width: 140px; height: 140px; border: 1px solid #000; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .qr-img { width: 100%; height: 100%; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD5806mAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAAFdJREFUeF7t0rENgDAMRNEfFmAlSmasREmU7D8KCh9SInGvunSnuS9fXpYqYCO2YCO2YCO2YCMO7AsI6Bv6An70YAM2YAM2YAM2YAM2YCO2YCMO7AsI6Bv6As7dC5Xit9Y6AAAAAElFTkSuQmCC'); background-size: cover; }
     </style>
 </head>
 <body>
@@ -67,15 +69,9 @@
             <input type="password" class="login-input" value="2405001715027">
             <button class="btn-prijavi" onclick="prijaviSe()">PRIJAVI SE</button>
             <div class="login-text-content">
-                Izvršeno je objedinjavanje naloga za pristup studentskim servisima i naloga za pristup Veb elektronskoj pošti odnosno studentskim računarima u Računskom centru.
+                Izvršeno je objedinjavanje naloga za pristup studentskim servisima i naloga za pristup Veb elektronskoj pošti...
                 <br><br>
-                Sada možete pristupiti svojim podacima preko korisničkog imena i šifre koje koristite za pristup svom nalogu Veb elektronske pošte odnosno studentskim računarima u Računskom centru:
-                <br><br>
-                Primer: student osnovnih studija Marko Petrović, broj indeksa 0999/08 (godina upisa 2008.) pristupa sistemu sa:<br>
-                Korisničko ime: <b>pm080999d</b><br>
-                Lozinka: Inicijalna lozinka prilikom otvaranja naloga je JMBG (ukoliko je niste promenili).
-                <br><br>
-                <b>Ukoliko niste podigli svoj nalog ili ste izgubili lozinku, istu možete dobiti isključivo u Računskom centru ETF radnim danima od 9 do 17 časova uz priložen indeks.</b>
+                Sada možete pristupiti svojim podacima preko korisničkog imena i šifre...
             </div>
         </div>
     </div>
@@ -83,19 +79,19 @@
     <div id="app-main" style="display:none;">
         <div class="header">
             <span class="logo-txt">eStudent</span>
-            <div class="user-info">Sofija Brajović (bs200179d)</div>
+            <div class="user-info">Sofija Brajović (bs200179d) <span style="font-size:6px; cursor:pointer;" onclick="location.reload()">kraj rada</span></div>
         </div>
 
         <div class="wrapper">
             <div class="sidebar">
                 <div class="folder-icon"><img src="https://student.etf.bg.ac.rs/images/folders.png" width="70" alt="folder"></div>
-                <div class="menu-item" onclick="show('pocetna', this)">Početna</div>
+                <div class="menu-item" id="menu-pocetna" onclick="show('pocetna', this)">Početna</div>
                 <div class="menu-item">Molba</div>
                 <div class="menu-item">Stara obaveštenja</div>
                 <div class="menu-item">ŠV 20</div>
                 <div class="menu-item">Ispitni rokovi</div>
                 <div class="menu-item">Prijava ispita</div>
-                <div class="menu-item" onclick="show('ispiti', this)">Ispiti</div>
+                <div class="menu-item" id="menu-ispiti" onclick="show('ispiti', this)">Ispiti</div>
                 <div class="menu-item">Aktivnosti</div>
                 <div class="menu-item">Spiskovi</div>
                 <div class="menu-item">Raspored časova</div>
@@ -106,7 +102,7 @@
                 <div class="menu-item">Disciplinske mere</div>
                 <div class="menu-item">Obaveze</div>
                 <div class="menu-item">Upisi</div>
-                <div class="menu-item active" onclick="show('uplate', this)">Školarine i uplate</div>
+                <div class="menu-item" id="menu-uplate" onclick="show('uplate', this)">Školarine i uplate</div>
                 <div class="menu-item">Izbor profila</div>
                 <div class="menu-item">Završni rad</div>
                 <div class="menu-item">Administracija</div>
@@ -121,57 +117,57 @@
 
             <div class="main-content">
                 
-                <div id="v-uplate" class="view" style="display:block;">
-                    <h2 style="font-size:11px; margin-bottom:10px;">Školarine i Uplate</h2>
-                    
-                    <div class="student-account-header">
-                        <div class="account-row">
-                            <span>Stanje na računu: <strong>3.551,00</strong></span>
-                            <span>Ukupno dugovanje na današnji dan: <strong>0,00</strong></span>
-                        </div>
-                        <div class="account-row">
-                            <span>Ukupno dugovanje: <strong>84.600,00</strong></span>
-                            <span>Ukupna školarina za poslednji upis:</span>
-                        </div>
+                <div id="v-pocetna" class="view">
+                    <span class="home-links">Pitanja i odgovori</span>
+                    <span class="home-links">Uverenje o studiranju</span>
+                    <span class="home-links">Potvrda o useljenju u dom</span>
+                    <h2 style="font-size:11px; margin-top:15px; font-weight:normal;">Obaveštenja</h2>
+                    <div class="notice-box">
+                        <strong>27.03.2026. - 03.04.2026.</strong><br><br>
+                        Prijavljivanje za Elektrijadu se nalazi na studentskim servisima u opciji "Spiskovi". Prijava traje od 27. marta do 3. aprila...
                     </div>
+                </div>
 
+                <div id="v-uplate" class="view">
+                    <h2 style="font-size:11px; margin-bottom:10px;">Školarine i Uplate</h2>
+                    <div class="student-account-header">
+                        <div class="account-row"><span>Stanje na računu: 3.551,00</span><span>Ukupno dugovanje na dan: 0,00</span></div>
+                    </div>
                     <table>
-                        <thead>
-                            <tr><th>Školska godina</th><th>Godina studija</th><th>Status upisa</th><th>Način upisa</th><th>Tip uplate</th><th>Rata</th><th>Iznos</th><th>Rok uplate</th></tr>
-                        </thead>
+                        <thead><tr><th>Školska godina</th><th>Godina</th><th>Status</th><th>Način</th><th>Tip</th><th>Rata</th><th>Iznos</th><th>Rok</th></tr></thead>
                         <tbody>
                             <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>84.600,00</td><td>01.05.2026.</td></tr>
                             <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>84.600,00</td><td>15.03.2026.</td></tr>
                             <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>70.500,00</td><td>19.12.2025.</td></tr>
                             <tr><td>2025/26</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>70.500,00</td><td>30.11.2025.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>69.019,50</td><td>01.09.2025.</td></tr>
-                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.05.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>69.019,50</td><td>01.09.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>69.019,50</td><td>01.05.2025.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>62.745,00</td><td>01.12.2024.</td></tr>
+                            <tr><td>2024/25</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>62.745,00</td><td>31.10.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>75.200,00</td><td>01.05.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>75.200,00</td><td>15.03.2024.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>70.500,00</td><td>01.12.2023.</td></tr>
+                            <tr><td>2023/24</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>70.500,00</td><td>31.10.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2023.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2022.</td></tr>
+                            <tr><td>2022/23</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>4</td><td>64.933,34</td><td>01.05.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>3</td><td>64.933,33</td><td>15.03.2022.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2021.</td></tr>
+                            <tr><td>2021/22</td><td>druga</td><td>samofinansiranje</td><td>upis naredne godine</td><td>školarina</td><td>1</td><td>60.875,00</td><td>31.10.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>sa rang liste</td><td>školarina</td><td>4</td><td>60.875,00</td><td>01.05.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>sa rang liste</td><td>školarina</td><td>3</td><td>60.875,00</td><td>15.03.2021.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>sa rang liste</td><td>školarina</td><td>2</td><td>60.875,00</td><td>01.12.2020.</td></tr>
+                            <tr><td>2020/21</td><td>prva</td><td>samofinansiranje</td><td>sa rang liste</td><td>školarina</td><td>1</td><td>60.875,00</td><td>08.07.2020.</td></tr>
                         </tbody>
                     </table>
-                    
                     <div class="uplatnica-form">
-                        <div style="display:flex;">
-                            <div style="width:60%; border-right:1px solid #000; padding-right:5px;">
-                                <span class="label-up">uplatilac</span>
-                                <span class="val-up">Sofija Brajović<br>Bulevar kralja Aleksandra 73</span>
-                                <span class="label-up" style="margin-top:5px;">svrha uplate</span>
-                                <span class="val-up">Školarina / prijava ispita</span>
-                                <span class="label-up" style="margin-top:5px;">primalac</span>
-                                <span class="val-up">ETF Beograd - Sopstveni prihodi</span>
-                            </div>
-                            <div style="width:40%; padding-left:5px;">
-                                <div style="display:flex; justify-content:space-between;">
-                                    <div><span class="label-up">šifra</span><span class="val-up">253</span></div>
-                                    <div><span class="label-up">iznos</span><span class="val-up">84.600,00</span></div>
-                                </div>
-                                <span class="label-up" style="margin-top:5px;">račun primaoca</span>
-                                <span class="val-up">840-32904645-58</span>
-                                <span class="label-up" style="margin-top:5px;">poziv na broj</span>
-                                <span class="val-up">141220200179</span>
-                                <div class="qr-img">IPS QR KOD</div>
-                            </div>
-                        </div>
+                        <span class="label-up">uplatilac</span><span class="val-up">Sofija Brajović</span>
+                        <span class="label-up">račun primaoca</span><span class="val-up">840-32904645-58</span>
+                        <span class="label-up">poziv na broj</span><span class="val-up">141220200179</span>
                     </div>
+                    <div class="ips-qr-container"><span class="ips-logo">NBS IPS QR kod</span><div class="real-qr"><div class="qr-img"></div></div></div>
                 </div>
 
                 <div id="v-ispiti" class="view">
@@ -185,20 +181,29 @@
                             <tr><td>4</td><td>13S112MC</td><td>Inteligentni sistemi</td><td>Boško Nikolić</td><td>8</td><td>6</td></tr>
                             <tr><td>5</td><td>13S112AR</td><td>Arhitektura računara</td><td>Zaharije Radivojević</td><td>7</td><td>6</td></tr>
                             <tr><td>6</td><td>13S112RM1</td><td>Računarske mreže 1</td><td>Pavle Vuletić</td><td>8</td><td>6</td></tr>
+                            <tr><td>7</td><td>13S082VS</td><td>Verovatnoća i statistika</td><td>Slobodan Vujić</td><td>6</td><td>4</td></tr>
+                            <tr><td>8</td><td>13S033PMT</td><td>Principi mod. telekom.</td><td>Predrag Ivaniš</td><td>6</td><td>6</td></tr>
+                            <tr><td>9</td><td>13S111PRT</td><td>Praktikum iz ORT</td><td>Jelena Nikolić</td><td>10</td><td>3</td></tr>
+                            <tr><td>10</td><td>13S112IS1</td><td>Informacioni sistemi 1</td><td>Slavica Kostić</td><td>7</td><td>6</td></tr>
+                            <tr><td>11</td><td>13S112ORT2</td><td>Osnovi rač. tehnike 2</td><td>Igor Ikodinović</td><td>6</td><td>6</td></tr>
+                            <tr><td>12</td><td>13S111ASP1</td><td>Algoritmi i strukture 1</td><td>Milo Tomašević</td><td>7</td><td>6</td></tr>
+                            <tr><td>13</td><td>13S112BP1</td><td>Baze podataka 1</td><td>Pavle Vuletić</td><td>6</td><td>6</td></tr>
+                            <tr><td>14</td><td>13S081M2</td><td>Matematika 2</td><td>Miodrag Spalević</td><td>7</td><td>6</td></tr>
+                            <tr><td>15</td><td>13S111ORT1</td><td>Osnovi rač. tehnike 1</td><td>Igor Ikodinović</td><td>8</td><td>6</td></tr>
+                            <tr><td>16</td><td>13S111P2</td><td>Praktikum iz prog. 2</td><td>Dragan Bojić</td><td>10</td><td>3</td></tr>
+                            <tr><td>17</td><td>13S081PM2</td><td>Praktikum iz mat. 2</td><td>Miodrag Spalević</td><td>10</td><td>2</td></tr>
+                            <tr><td>18</td><td>13S091EJB</td><td>Engleski jezik - viši</td><td>Marija Milojković</td><td>9</td><td>3</td></tr>
+                            <tr><td>19</td><td>13S111P2</td><td>Programiranje 2</td><td>Dragan Bojić</td><td>6</td><td>6</td></tr>
+                            <tr><td>20</td><td>13S041OE</td><td>Osnovi elektronike</td><td>Lazar Saranovac</td><td>7</td><td>6</td></tr>
+                            <tr><td>21</td><td>13S111P1</td><td>Programiranje 1</td><td>Boško Nikolić</td><td>6</td><td>6</td></tr>
+                            <tr><td>22</td><td>13S111PP1</td><td>Praktikum iz prog. 1</td><td>Boško Nikolić</td><td>9</td><td>3</td></tr>
+                            <tr><td>23</td><td>13S081M1</td><td>Matematika 1</td><td>Miodrag Spalević</td><td>7</td><td>6</td></tr>
+                            <tr><td>24</td><td>13S091EJN</td><td>Engleski jezik - niži</td><td>Marija Milojković</td><td>8</td><td>3</td></tr>
+                            <tr><td>25</td><td>13S081PM1</td><td>Praktikum iz mat. 1</td><td>Miodrag Spalević</td><td>9</td><td>2</td></tr>
+                            <tr><td>26</td><td>13S051F</td><td>Fizika</td><td>Jasna Crnjanski</td><td>6</td><td>6</td></tr>
                             <tr><td>27</td><td>24011UVRA</td><td>Uvod u računarstvo</td><td>Milo Tomašević</td><td>10</td><td>3</td></tr>
                         </tbody>
                     </table>
-                </div>
-
-                <div id="v-pocetna" class="view">
-                    <h2 style="color:blue; text-decoration:underline; font-size:10px;">Pitanja i odgovori</h2>
-                    <h2 style="color:blue; text-decoration:underline; font-size:10px;">Uverenje o studiranju</h2>
-                    <h2 style="color:blue; text-decoration:underline; font-size:10px;">Potvrda o useljenju u dom</h2>
-                    <h3 style="margin-top:20px; font-size:11px;">Obaveštenja</h3>
-                    <div style="border:1px solid #ccc; padding:10px; font-size:8px;">
-                        <strong>Elektrijada 2026. (27.03 - 03.04.2026.)</strong><br><br>
-                        Prijavljivanje za Elektrijadu se nalazi na studentskim servisima u opciji "Spiskovi".
-                    </div>
                 </div>
 
             </div>
@@ -209,6 +214,7 @@
         function prijaviSe() {
             document.getElementById('login-scr').style.display = 'none';
             document.getElementById('app-main').style.display = 'block';
+            show('pocetna', document.getElementById('menu-pocetna'));
         }
         function show(id, el) {
             document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
